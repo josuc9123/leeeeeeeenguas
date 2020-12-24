@@ -1,0 +1,103 @@
+<?php 
+/** @var \Laminas\Form\Form */
+$form = $this->form;
+$form->setAttribute('action', $this->url('login'));
+
+foreach($form->getElements() as $element) {
+    $element->setAttribute('class', 'form-control');
+    $element->setAttribute('placeholder', $element->getLabel());
+}
+
+$form->get('remember_me')->setAttribute('class', '');
+$form->get('submit')->setAttribute('class', 'btn btn-primary btn-block');
+
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lenguas</title>
+
+  <!-- Le styles -->
+  <?= $this->headLink(['rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'])
+            ->prependStylesheet($this->basePath('css/style.css'))
+            ->prependStylesheet($this->basePath('vendor/admin-lte/css/adminlte.min.css'))
+            ->prependStylesheet($this->basePath('vendor/fontawesome-free/css/all.min.css'))
+            ->prependStylesheet('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback')
+        ?>
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    Lenguas
+  </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <!-- <p class="login-box-msg">Sign in to start your session</p> -->
+
+      <?= $this->form()->openTag($form) ?>
+        <?php if ($this->error): ?>
+          <div class="callout callout-danger">
+            <h5>Ups!</h5>
+            <p><?= $this->error ?></p>
+          </div>
+        <?php endif ?>
+        <?= $this->formElement($form->get('csrf')) ?>
+        <div class="input-group mb-3">
+          <!-- <input type="email" class="form-control" placeholder="Email"> -->
+          <?= $this->formElement($form->get('username')) ?>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+          <?= $this->formElementErrors($form->get('username')) ?>
+        </div>
+        <div class="input-group mb-3">
+          <!-- <input type="password" class="form-control" placeholder="Password"> -->
+          <?= $this->formElement($form->get('password')) ?>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+          <?= $this->formElementErrors($form->get('password')) ?>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <div class="icheck-primary">
+              <?= $this->formElement($form->get('remember_me')) ?>
+              <?= $this->formLabel($form->get('remember_me')) ?>
+            </div>
+          </div>
+          <!-- /.col -->
+          <div class="col-4">
+            <?= $this->formElement($form->get('submit')) ?>
+          </div>
+          <!-- /.col -->
+        </div>
+      <?= $this->form()->closeTag() ?>
+      <!-- /.social-auth-links -->
+
+      <hr class="mt-4 mb-3">
+
+      <p class="mb-1">
+        <a href="forgot-password.html">I forgot my password</a>
+      </p>
+      <p class="mb-0">
+        <a href="register.html" class="text-center">Register a new membership</a>
+      </p>
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->
+
+<?= $this->inlineScript()
+            ->prependFile($this->basePath('vendor/admin-lte/js/adminlte.min.js'))
+            ->prependFile($this->basePath('vendor/bootstrap/bootstrap.bundle.min.js'))
+            ->prependFile($this->basePath('vendor/jquery/jquery.min.js')) ?>
+</body>
+</html>

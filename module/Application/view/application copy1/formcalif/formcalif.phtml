@@ -1,0 +1,102 @@
+<div class="container-fluid">
+
+<div class="row">
+<div class="col-xl-8 col-lg-7">
+
+<div class="card shadow mb-4">
+<div class="card-header py-3">
+<h6 class="m-0 font-weight-bold text-primary">Concentrado de calificacioness</h6>
+</div>
+<div class="card-body">
+<div class="chart-area">
+<p>Curso intermedio B1</p>
+<br>
+<table id="tablaCambCalif" class="table">
+<thead>
+<tr>
+<th >ID</th>
+<th >No. Control</th>
+<th >Nombre</th>
+<th >Calificaciones</th>
+</tr>
+</thead>
+
+<form id="cambCalifForm" action="{{ route('edit')}}" method="POST"> 
+<input type="hidden" id="_tokencambCalif" name="_token" value="{{ csrf_token() }}">
+<tbody>
+@foreach($alumnos as $alumnos)
+<tr>
+<th >{{ $alumnos->id}}</th>
+<input type="hidden" name="idAlumno" id="{{ $alumnos->id}}" value="{{ $alumnos->id}}">
+
+  <td>{{ $alumnos->no_control}}</td>
+  <td>{{ $alumnos->nombre}}</td>
+  <td><input  name="calif" type="text"></td>
+  </td>
+</tr>
+@endforeach
+<tr> 
+<th>  
+<a href="{{ url('formcalif')}}" type="button" class="btn btn-danger">REGRESAR</a></th>
+<th> <button type="button" class="btn btn-success" id="btn_cambCalif" >CALIFICAR</button></th>
+                       
+</tr>                       
+</tbody> 
+</form>
+</table>
+</div> 
+
+<div class="container" style="padding-top: 5%; ">
+<table class="table">
+<tr> 
+<th>  
+<!-- <form action="{{ route('edit', $alumnos->id)}}" method="POST">-->
+<!--@csrf  @method('PATCH') -->
+<th> <a href="calificacionparcial" type="button" class="btn btn-danger">CANCELAR</a></th>
+<!--<th> <button type="submit" class="btn btn-danger">Guardar</button></th>-->
+</tr>
+</form>
+                 
+</table>                   
+</div>
+</div>                  
+</div>
+</div>
+
+    
+</div>
+</div>
+
+</div>
+
+</div>
+<script>
+$(function(){
+$('#btn_cambCalif').click(function(){
+var ids = [];
+var califs = [];
+var url = $('#cambCalifForm').attr("action");
+var _token = $('#_tokencambCalif').val();
+$('#tablaCambCalif tbody input[name="idAlumno"] ').each(function () { 	
+ids.push($(this).attr('id'));
+});
+$('#tablaCambCalif tbody input[name="calif"] ').each(function () { 	
+califs.push($(this).val());
+});
+
+$.ajax({
+    method: "POST",
+    url: url,
+    data: {ids: ids, califs:califs, _token:_token},
+    success : function(data){
+      location.href = 'calificacionparcial';
+     lert('Calificaciones guardadas');
+        console.log(data);
+    },
+    error: function(){
+        alert("no jalo");
+    },
+});
+});
+});
+</script>
