@@ -92,32 +92,36 @@
         <table class="table table-bordered tablaDatosCurso">
           <thead>
             <tr>
-              <th>No</th>
-              <th>No. CONTROL</th>
+            <th>No. CONTROL</th>
               <th>NOMBRE</th>
               <th>CALIFICACIÓN</th>
+              
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>17270162</td>
-              <td>JOSÉ FERNANDO PÉREZ GARCÍA</td>
-              <td>86</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>15270152</td>
-              <td>JAIR DE LA CRUZ VAZQUEZ</td>
-              <td>75</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>16270129</td>
-              <td>LILIANA SOFÍA LÓPEZ PALOMINO</td>
-              <td>100</td>
-            </tr>
-          </tbody>
+          <?php foreach($this->alumnos as $alumno): ?>
+                        <tr>
+                            <td>
+                            <label for="<?= $alumno->getNoDeControl() ?>">
+                            <?= $alumno->getNoDeControl() ?>
+                            </label>
+                            </td>
+                            <td>
+                            <label for="<?= $alumno->getNoDeControl() ?>">
+                            <?= $alumno->getNombre() ?>
+                            </label>
+                            </td>
+                            <td>
+                            <?php foreach($this->calificaciones as $calificacion): ?>
+                            <label for="<?= $calificacion->getCalificaciones() ?>">
+                            <?= $alumno->getCalificaciones() ?>
+                                </label>
+                                <?php endforeach ?>  
+                                </div>
+                            </div>
+                            </th>
+                        </tr>
+                        <?php endforeach ?>
         </table>
    </div>
   </section>

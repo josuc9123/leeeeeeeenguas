@@ -68,7 +68,7 @@ return [
                 ],
             ],
             'acta' => [
-                'type' => literal::class,
+                'type' => Segment::class,
                 'options' => [
                     'route' => '/acta',
                     'defaults' => [
@@ -84,7 +84,7 @@ return [
             Controller\IndexController::class => Factory\Controller\IndexControllerFactory::class,
             Controller\LoginController::class => Factory\Controller\LoginControllerFactory::class,
             Controller\CalificacionController::class => InvokableFactory::class,
-            Controller\actaController::class => InvokableFactory::class,
+            Controller\actaController::class => Factory\Controller\actaControllerFactory::class,
             Controller\CalificacionesController::class => Factory\Controller\CalificacionesControllerFactory::class,
         ],
     ],
