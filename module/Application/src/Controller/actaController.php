@@ -4,9 +4,9 @@ namespace Application\Controller;
 use Laminas\Mvc\Controller\AbstractActionController;
 use Laminas\View\Model\ViewModel;
 
-class CalificacionController extends AbstractActionController
+class actaController extends AbstractActionController
 {
-    public function calificacionAction()
+    public function actaAction()
     {
         return new ViewModel();
     }

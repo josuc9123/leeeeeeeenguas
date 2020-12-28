@@ -67,6 +67,16 @@ return [
                     ],
                 ],
             ],
+            'acta' => [
+                'type' => literal::class,
+                'options' => [
+                    'route' => '/acta',
+                    'defaults' => [
+                        'controller' => Controller\actaController::class,
+                        'action'     => 'acta',
+                    ],
+                ],
+            ],
         ],
     ],
     'controllers' => [
@@ -74,6 +84,7 @@ return [
             Controller\IndexController::class => Factory\Controller\IndexControllerFactory::class,
             Controller\LoginController::class => Factory\Controller\LoginControllerFactory::class,
             Controller\CalificacionController::class => InvokableFactory::class,
+            Controller\actaController::class => InvokableFactory::class,
             Controller\CalificacionesController::class => Factory\Controller\CalificacionesControllerFactory::class,
         ],
     ],
